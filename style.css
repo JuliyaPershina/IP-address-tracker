@@ -143,6 +143,8 @@ main {
   line-height: 30px;
   letter-spacing: -0.232143px;
   color: #2c2c2c;
+  word-break: break-word;
+
 }
 
 #mapa {

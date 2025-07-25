@@ -6,6 +6,19 @@ const checkBtn = document.getElementById('searchBtn') as HTMLButtonElement;
 const outputs: NodeListOf<HTMLElement> =
   document.querySelectorAll('.outputItem');
 
+// Інтерфейс для відповіді API
+  interface IPApiResponse {
+    ip: string;
+    city: string;
+    region_code: string;
+    postal: string;
+    latitude: string;
+    longitude: string;
+    utc_offset: string;
+    org: string;
+    error?: string;
+  }
+
 let mapa: L.Map | null = null;
 let marker: L.Marker | null = null;
 
@@ -22,15 +35,7 @@ async function showInformation(ipAddress: string): Promise<void> {
       throw new Error(`HTTP помилка: ${res.status}`);
     }
 
-    const data = await res.json();
-    console.log('Отримані дані:', data);
-
-    // Перевірка на валідність відповіді
-    if (!data || data.error || !data.latitude || !data.longitude) {
-      showError('Упс, не вдалося знайти інформацію по цьому IP.');
-      return;
-    }
-
+    const data: IPApiResponse = await res.json();
     const {
       ip: realIp,
       city,
@@ -42,6 +47,12 @@ async function showInformation(ipAddress: string): Promise<void> {
       org,
     } = data;
 
+    // Перевірка на валідність відповіді
+    if (!data || data.error || !data.latitude || !data.longitude) {
+      showError('Упс, не вдалося знайти інформацію по цьому IP.');
+      return;
+    }
+
     updateOutputs([
       `${realIp}`,
       `${city}, ${region_code}, ${postal}`,
@@ -50,7 +61,7 @@ async function showInformation(ipAddress: string): Promise<void> {
     ]);
 
     showMap(latitude, longitude);
-    setTimeout(() => mapa?.invalidateSize(), 0);
+    setTimeout(() => mapa?.invalidateSize(), 100);
   } catch (error) {
     console.error('Помилка при запиті:', error);
     showError('Помилка з’єднання або невірний IP.');
@@ -62,19 +73,20 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Обробка кліку на кнопку
   checkBtn.addEventListener('click', async () => {
     const ip: string = ipInput.value.trim();
-    showInformation(ip);
+    checkBtn.disabled = true;
+    await showInformation(ip);
+    checkBtn.disabled = false;
   });
+
 
   // Автозавантаження інформації про поточного користувача
   try {
     const res = await fetch('https://ipapi.co/json/');
     if (!res.ok) throw new Error(`HTTP помилка: ${res.status}`);
 
-    const data = await res.json();
+    const data: IPApiResponse = await res.json();
     if (data && data.ip) {
-      // Записати IP користувача у поле вводу (опціонально)
       ipInput.value = data.ip;
-      // Показати інформацію
       showInformation(data.ip);
     } else {
       showError('Не вдалося отримати дані користувача.');
@@ -83,7 +95,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.error('Помилка при автозавантаженні:', err);
     showError('Не вдалося отримати IP користувача.');
   }
+
+  // Обробка натискання Enter в полі вводу
+  ipInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      checkBtn.click(); 
+    }
+  });
 });
+
 
 
 // функція для відображення карти
@@ -108,8 +128,6 @@ function showMap(lat: string, lng: string): void {
       marker.setLatLng(center);
     }
 }
-
-
 
 
 // оновлення значень у .outputItem

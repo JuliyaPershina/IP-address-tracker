@@ -14,6 +14,7 @@
 
 * {
   margin: 0;
+  padding: 0;
 }
 
 body {
@@ -32,6 +33,7 @@ header {
   background-image: url('./images/pattern-bg-desktop.png');
   background-repeat: no-repeat;
   background-size: cover;
+  z-index: 2;
   h1 {
     font-size: 32px;
     line-height: 30px;
@@ -103,7 +105,7 @@ main {
   justify-content: center;
   .output {
     max-width: 1110px;
-    width: 100%;
+    width: 95%;
     min-height: 161px;
     position: absolute;
     left: 50%;
@@ -114,12 +116,15 @@ main {
     border-radius: 15px;
     display: flex;
     margin-inline: auto;
-    z-index: 1;
+    z-index: 3;
     .outputItem {
       width: 25%;
       padding: 36px 32px;
       display: flex;
       flex-direction: column;
+      position: relative;
+      word-break: break-word;
+
       p {
         font-weight: 700;
         font-size: 12px;
@@ -138,20 +143,84 @@ main {
   }
 }
 
-.output span {
-  font-size: 26px;
-  line-height: 30px;
-  letter-spacing: -0.232143px;
-  color: #2c2c2c;
-  word-break: break-word;
-
+.outputItem:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  width: 1px;
+  height: 75px;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #000000;
+  mix-blend-mode: normal;
+  opacity: 0.15;
 }
 
 #mapa {
-  width: 100vw; /* повна ширина вікна */
-  height: 65vh; /* фіксована висота */
+  width: 100vw;
+  height: 65vh;
   overflow: hidden;
   box-sizing: border-box;
   background-repeat: no-repeat;
-  z-index: 0;
+  z-index: -1;
+  min-height: 520px;
+}
+
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+  header {
+    height: 35vh;
+    h1 {
+      font-size: 26px;
+      line-height: 30px;
+      letter-spacing: -0.232143px;
+      margin-block: 26px;
+    }
+    .search {
+      /* max-width: 347px; */
+      width: 87%;
+      min-width: 327px;
+      padding-inline: 0;
+    }
+  }
+
+  main {
+    min-height: 528px;
+    .output {
+      width: 87%;
+      min-width: 327px;
+      flex-direction: column;
+      top: 167px;
+      max-height: 376px;
+      .outputItem {
+        width: 100%;
+        padding: 24px;
+        justify-content: center;
+        align-items: center;
+        gap: 7px;
+        max-height: 70px;
+        p {
+          font-size: 10px;
+          line-height: 12px;
+          letter-spacing: 1.45833px;
+        }
+        span {
+          font-size: 20px;
+          line-height: 24px;
+          letter-spacing: -0.18px;
+        }
+      }
+    }
+    .outputItem:not(:last-child)::after {
+      display: none;
+    }
+    .outputItem:not(:last-child){
+      padding-block-end: 0;
+    }
+  }
+  #mapa {
+    min-height: 528px;
+  }
 }

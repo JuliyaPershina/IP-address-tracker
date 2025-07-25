@@ -4,7 +4,9 @@
 const ipInput = document.getElementById('searchInput') as HTMLInputElement;
 const checkBtn = document.getElementById('searchBtn') as HTMLButtonElement;
 const outputs: NodeListOf<HTMLElement> =
-  document.querySelectorAll('.outputItem');
+  document.querySelectorAll('.idInformaton');
+  console.log('Outputs:', outputs);
+  
 
 // Інтерфейс для відповіді API
   interface IPApiResponse {
@@ -17,7 +19,14 @@ const outputs: NodeListOf<HTMLElement> =
     utc_offset: string;
     org: string;
     error?: string;
-  }
+}
+  
+var greenIcon = L.icon({
+  iconUrl: './images/icon-location.svg',
+
+  iconSize: [46, 56], // size of the icon
+  iconAnchor: [23, 55], // point of the icon which will correspond to marker's location
+});
 
 let mapa: L.Map | null = null;
 let marker: L.Marker | null = null;
@@ -119,11 +128,11 @@ function showMap(lat: string, lng: string): void {
         attribution: '&copy; OpenStreetMap',
       }).addTo(mapa);
 
-      marker = L.marker(center).addTo(mapa);
+      marker = L.marker(center, { icon: greenIcon }).addTo(mapa);
     } else {
       mapa.setView(center, 10);
       if (!marker) {
-        marker = L.marker(center).addTo(mapa);
+        marker = L.marker(center, { icon: greenIcon }).addTo(mapa);
       }
       marker.setLatLng(center);
     }
@@ -148,5 +157,8 @@ function showError(message: string): void {
     el.textContent = message;
   });
 }
+
+
+
 
 // 176.9.67.227

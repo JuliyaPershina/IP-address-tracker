@@ -1,0 +1,155 @@
+.rubik-500 {
+  font-family: 'Rubik', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  color: #2c2c2c;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+body {
+  max-width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  position: relative;
+}
+
+header {
+  height: 35vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url('./images/pattern-bg-desktop.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  h1 {
+    font-size: 32px;
+    line-height: 30px;
+    letter-spacing: -0.285714px;
+    color: #ffffff;
+    margin-block: 32px;
+  }
+  .search {
+    max-width: 575px;
+    width: 100%;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 50px 50px -25px rgba(0, 0, 0, 0.0983665);
+    padding-inline: 10px;
+    #searchInput {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: #ffffff;
+      border-radius: 15px 0 0 15px;
+      padding-inline-start: 24px;
+      outline: none;
+      cursor: pointer;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 21px;
+
+      &::placeholder {
+        opacity: 0.5;
+      }
+
+      &::-webkit-input-placeholder {
+        opacity: 0.5;
+      }
+
+      &::-moz-placeholder {
+        opacity: 0.5;
+      }
+
+      &:-ms-input-placeholder {
+        opacity: 0.5;
+      }
+    }
+    .searchBtn {
+      width: 58px;
+      height: 100%;
+      border: none;
+      border-radius: 0 15px 15px 0;
+      background: #000;
+      background-image: url('./images/icon-arrow.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      transition: all 0.3s ease-in-out;
+      &:hover {
+        background-color: #3f3f3f;
+      }
+    }
+  }
+}
+
+main {
+  height: 65vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .output {
+    max-width: 1110px;
+    width: 100%;
+    min-height: 161px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 200px;
+    background: #ffffff;
+    box-shadow: 0px 50px 50px -25px rgba(0, 0, 0, 0.0983665);
+    border-radius: 15px;
+    display: flex;
+    margin-inline: auto;
+    z-index: 1;
+    .outputItem {
+      width: 25%;
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      p {
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 14px;
+        letter-spacing: 1.75px;
+        text-transform: uppercase;
+        mix-blend-mode: normal;
+        opacity: 0.5;
+      }
+      span {
+        font-size: 26px;
+        line-height: 30px;
+        letter-spacing: -0.232143px;
+      }
+    }
+  }
+}
+
+.output span {
+  font-size: 26px;
+  line-height: 30px;
+  letter-spacing: -0.232143px;
+  color: #2c2c2c;
+}
+
+#mapa {
+  width: 100vw; /* повна ширина вікна */
+  height: 65vh; /* фіксована висота */
+  overflow: hidden;
+  box-sizing: border-box;
+  background-repeat: no-repeat;
+  z-index: 0;
+}

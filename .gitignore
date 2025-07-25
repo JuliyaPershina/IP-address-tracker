@@ -13,3 +13,31 @@
 
 # Avoid your project being littered with annoying .DS_Store files!
 .DS_Store
+# Node.js
+node_modules/
+dist/
+build/
+.env
+.env.local
+.env.*.local
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.sw?
+
+# Misc
+coverage/
+.cache/

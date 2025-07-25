@@ -1,34 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+    <link rel="stylesheet" href="./style.css" />
+    <title>IP Address Tracker</title>
+  </head>
+  <body class="rubik-500">
+    <header>
+      <h1>IP Address Tracker</h1>
+      <div class="search">
+        <input
+          type="text"
+          name="searchInput"
+          id="searchInput"
+          placeholder="Search for any IP address or domain"
+        />
+        <button id="searchBtn" class="searchBtn"></button>
+      </div>
+    </header>
+    <main>
+      <div class="output">
+        <div class="outputItem">
+          <p>IP Address:</p>
+          <span id="ipAddress"></span>
+        </div>
+        <div class="outputItem">
+          <p>Location:</p>
+          <span translate="no"></span>
+        </div>
+        <div class="outputItem">
+          <p>Timezone:</p>
+          <span translate="no" id="timezone"></span>
+        </div>
+        <div class="outputItem">
+          <p>ISP:</p>
+          <span translate="no" id="isp"></span>
+        </div>
+      </div>
+      <div id="mapa" class="map"></div>
+    </main>
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | IP Address Tracker</title>
-
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
-
-  IP Address Tracker
-
-  Search for any IP address or domain
-
-  IP Address
-  Location
-  Timezone
-    UTC <!-- add offset value dynamically using the API -->
-  ISP
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
-</body>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+    <script src="./dist/script.js"></script>
+  </body>
 </html>

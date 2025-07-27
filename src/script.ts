@@ -1,26 +1,24 @@
 /// <reference types="leaflet" />
 
-
 const ipInput = document.getElementById('searchInput') as HTMLInputElement;
 const checkBtn = document.getElementById('searchBtn') as HTMLButtonElement;
 const outputs: NodeListOf<HTMLElement> =
   document.querySelectorAll('.idInformaton');
-  console.log('Outputs:', outputs);
-  
+console.log('Outputs:', outputs);
 
 // Інтерфейс для відповіді API
-  interface IPApiResponse {
-    ip: string;
-    city: string;
-    region_code: string;
-    postal: string;
-    latitude: string;
-    longitude: string;
-    utc_offset: string;
-    org: string;
-    error?: string;
+interface IPApiResponse {
+  ip: string;
+  city: string;
+  region_code: string;
+  postal: string;
+  latitude: string;
+  longitude: string;
+  utc_offset: string;
+  org: string;
+  error?: string;
 }
-  
+
 var greenIcon = L.icon({
   iconUrl: './images/icon-location.svg',
 
@@ -87,7 +85,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     checkBtn.disabled = false;
   });
 
-
   // Автозавантаження інформації про поточного користувача
   try {
     const res = await fetch('https://ipapi.co/json/');
@@ -108,12 +105,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Обробка натискання Enter в полі вводу
   ipInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
-      checkBtn.click(); 
+      checkBtn.click();
     }
   });
 });
-
-
 
 // функція для відображення карти
 function showMap(lat: string, lng: string): void {
@@ -121,23 +116,29 @@ function showMap(lat: string, lng: string): void {
   const longitude = parseFloat(lng);
   const center = [latitude, longitude] as [number, number];
 
-    console.log(L);
-    if (!mapa) {
-      mapa = L.map('mapa').setView(center, 10);
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; OpenStreetMap',
-      }).addTo(mapa);
+  console.log(L);
+  if (!mapa) {
+    mapa = L.map('mapa', {
+      zoomControl: false, // відключаємо за замовчуванням
+    }).setView(center, 10);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap',
+    }).addTo(mapa);
+    L.control
+      .zoom({
+        position: 'bottomleft',
+      })
+      .addTo(mapa);
 
+    marker = L.marker(center, { icon: greenIcon }).addTo(mapa);
+  } else {
+    mapa.setView(center, 10);
+    if (!marker) {
       marker = L.marker(center, { icon: greenIcon }).addTo(mapa);
-    } else {
-      mapa.setView(center, 10);
-      if (!marker) {
-        marker = L.marker(center, { icon: greenIcon }).addTo(mapa);
-      }
-      marker.setLatLng(center);
     }
+    marker.setLatLng(center);
+  }
 }
-
 
 // оновлення значень у .outputItem
 function updateOutputs(values: string[]): void {
@@ -157,8 +158,5 @@ function showError(message: string): void {
     el.textContent = message;
   });
 }
-
-
-
 
 // 176.9.67.227

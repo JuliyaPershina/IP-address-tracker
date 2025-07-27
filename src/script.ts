@@ -108,6 +108,11 @@ document.addEventListener('DOMContentLoaded', async () => {
       checkBtn.click();
     }
   });
+
+  // Очистка поля при фокусі
+  ipInput.addEventListener('focus', () => {
+    ipInput.value = '';
+  });
 });
 
 // функція для відображення карти

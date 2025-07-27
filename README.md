@@ -1,95 +1,118 @@
-# IP address tracker solution
+# IP Address Tracker Solution
 
-This is a solution to the [IP address tracker challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/ip-address-tracker-I8-0yYAH0).  
+![Project Preview](./preview.png)
 
-## Table of contents
+## Table of Contents
 
 - [Overview](#overview)
-  - [The challenge](#the-challenge)
-  - [Screenshot](#screenshot)
-  - [Links](#links)
-- [My process](#my-process)
-  - [Built with](#built-with)
-  - [What I learned](#what-i-learned)
-  - [Continued development](#continued-development)
-  - [Useful resources](#useful-resources)
+  - [The Challenge](#the-challenge)
+  - [Demo](#demo)
+- [Features](#features)
+- [How It Works](#how-it-works)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [What I Learned](#what-i-learned)
+- [Future Improvements](#future-improvements)
 - [Author](#author)
 - [Acknowledgments](#acknowledgments)
 
+---
 
 ## Overview
 
-### The challenge
+### The Challenge
 
-Users should be able to:
+This project is a solution to the **IP Address Tracker** challenge (similar to Frontend Mentor). The goal was to build an interactive web app that allows users to:
 
-- View the optimal layout for each page depending on their device's screen size
-- See hover states for all interactive elements on the page
-- See their own IP address on the map on the initial page load
-- Search for any IP addresses or domains and see the key information and location
+- See their **current IP address** and **location on a map** on initial load
+- Search for any **IP address or domain**
+- View **location**, **timezone**, and **ISP**
+- Have a fully responsive design and interactive user experience
 
+### Demo
 
-## My process
+[🔗 IP Address Tracker](https://juliyapershina.github.io/IP-address-tracker/) — *(go to deployment link)*
 
-### Built with
+---
 
-- Semantic HTML5 markup
-- CSS custom properties
-- Flexbox
-- CSS Grid
-- Mobile-first workflow
-- [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
-- [Styled Components](https://styled-components.com/) - For styles
+## Features
 
+- 📍 **Map Integration** via [Leaflet.js](https://leafletjs.com/) and [OpenStreetMap](https://www.openstreetmap.org/)
+- 🌐 **IP Geolocation Lookup** using the [`https://ipapi.co`](https://ipapi.co/) API
+- 🔍 **Search by IP or domain**
+- 🖥️ **Responsive design** for mobile, tablet, and desktop
+- 💡 **Error handling** for invalid IP/domain queries
 
-### What I learned
+---
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+## How It Works
 
-To see how you can add code snippets, see below:
+1. On page load:
+   - The app fetches the user's IP and location from `ipapi.co`
+   - If supported, it tries to get precise geolocation from the browser API
+   - The info is displayed and a pin is set on the map
 
-```html
-<h1>Some HTML code I'm proud of</h1>
+2. When a user enters an IP or domain:
+   - A request is made to the API
+   - If successful, it updates the IP info and recenters the map to that location
+
+3. UI:
+   - IP address, location, timezone, and ISP are displayed in clean cards
+   - The map is interactive and resizes automatically
+
+---
+
+## Technologies Used
+
+- HTML5
+- CSS3 / SCSS-like syntax
+- TypeScript (with DOM types)
+- Leaflet.js (for maps)
+- IPAPI (`ipapi.co`)
+- Google Fonts: [Rubik](https://fonts.google.com/specimen/Rubik)
+
+---
+
+## Installation
+
+To run locally:
+
+1. Clone this repository:
+
+```bash
+git clone https://github.com/JuliyaPershina/IP-address-tracker
+cd ip-tracker
 ```
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
-```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
-}
-```
+## Getting Started
 
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
+Open `index.html` in your browser, or use a live server extension (e.g. [VS Code Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)).
 
-**Note: Delete this note and the content within this section and replace with your own learnings.**
+⚠️ Ensure that all assets (e.g., `/images`, `/dist/script.js`) are correctly placed.
 
-### Continued development
+---
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
+## What I Learned
 
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
+- ✅ Integration of third-party APIs (**IPAPI** & **Leaflet**)
+- 🔁 Managing asynchronous requests and error handling
+- 🧩 DOM manipulation with TypeScript
+- 📱 Responsive UI and adaptive layout logic
+- 🗺️ Centering Leaflet maps dynamically based on geolocation or IP lookup
 
-### Useful resources
+---
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
+## Future Improvements
 
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
+- 🧭 Add reverse DNS resolution  
+- 🌗 Add theme toggle (dark/light)  
+- 🧪 Add unit tests for fetch logic  
+- 🧠 Implement IP/domain validation before fetch  
+- 🔐 Use a proxy or server-side handler to hide API calls (for security)
+
+---
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
+- GitHub: [@JuliyaPershina](https://github.com/JuliyaPershina)  
 
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
 
-## Acknowledgments
-
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
-
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**

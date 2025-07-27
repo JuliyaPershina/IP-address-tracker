@@ -80,6 +80,9 @@ document.addEventListener('DOMContentLoaded', () => __awaiter(void 0, void 0, vo
             checkBtn.click();
         }
     });
+    ipInput.addEventListener('focus', () => {
+        ipInput.value = '';
+    });
 }));
 function showMap(lat, lng) {
     const latitude = parseFloat(lat);

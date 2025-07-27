@@ -161,17 +161,15 @@ main {
 #mapa {
   width: 100vw;
   height: 65vh;
-  overflow: hidden;
+  /* overflow: hidden; */
   box-sizing: border-box;
   background-repeat: no-repeat;
-  z-index: -1;
+  z-index: 0;
   min-height: 520px;
 }
 
 @media (max-width: 768px) {
-  /* body {
-    overflow-x: hidden;
-  } */
+
   header {
     height: 35vh;
     h1 {
@@ -181,7 +179,6 @@ main {
       margin-block: 26px;
     }
     .search {
-      /* max-width: 347px; */
       width: 87%;
       min-width: 327px;
       padding-inline: 0;
@@ -218,7 +215,7 @@ main {
     .outputItem:not(:last-child)::after {
       display: none;
     }
-    .outputItem:not(:last-child){
+    .outputItem:not(:last-child) {
       padding-block-end: 0;
     }
   }

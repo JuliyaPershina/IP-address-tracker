@@ -89,6 +89,8 @@ function showMap(lat, lng) {
     if (!mapa) {
         mapa = L.map('mapa', {
             zoomControl: false,
+            scrollWheelZoom: true,
+            touchZoom: true,
         }).setView(center, 10);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; OpenStreetMap',

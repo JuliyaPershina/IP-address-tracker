@@ -120,6 +120,8 @@ function showMap(lat: string, lng: string): void {
   if (!mapa) {
     mapa = L.map('mapa', {
       zoomControl: false, // відключаємо за замовчуванням
+      scrollWheelZoom: true, // ✅ Увімкнути прокрутку колесом миші
+      touchZoom: true, // ✅ Увімкнути pinch-zoom на мобільних
     }).setView(center, 10);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap',
